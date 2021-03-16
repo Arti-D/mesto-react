@@ -1,5 +1,5 @@
 import React from "react";
-import ApiElement from "../utils/Api.js";
+import api from "../utils/api.js";
 import Card from "./Card.js";
 
 function Main(props) {
@@ -9,7 +9,7 @@ function Main(props) {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    ApiElement.getUserInfo()
+    api.getUserInfo()
       .then((userData) => {
         setUserAvatar(userData.avatar);
         setUserDescription(userData.about);
@@ -20,7 +20,7 @@ function Main(props) {
   }, []);
 
   React.useEffect(() => {
-    ApiElement.getCards()
+    api.getCards()
       .then((data) => {
         setCards(data);
       })
@@ -32,7 +32,7 @@ function Main(props) {
       <section className="profile">
         <div className="profile__main">
           <div className="profile__avatar">
-            <img className="profile__avatar-img" src={userAvatar} />
+            <img className="profile__avatar-img" src={userAvatar} alt={`аватар пользователя ${userName}`} />
             <button
               className="profile__avatar-btn"
               type="button"
