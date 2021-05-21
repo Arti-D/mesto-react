@@ -2,17 +2,17 @@ import React from "react";
 import api from "../utils/api.js";
 import Card from "./Card.js";
 import CurrentUserContext from '../contexts/CurrentUserContext.js';
+import CardContext from '../contexts/CardContext.js';
 
 function Main(props) {
   const [cards, setCards] = React.useState([]);
-
-  const userData = React.useContext(CurrentUserContext)
+  const userData = React.useContext(CurrentUserContext);
+  const CurrentCard = React.useContext(CardContext);
 
   React.useEffect(() => {
     api.getCards()
       .then((data) => {
         setCards(data);
-        console.log(data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -54,13 +54,10 @@ function Main(props) {
       <section className="elems">
         <ul className="elems__list">
           {cards.map((item) => (
-           <Card
-            key={item._id}
-            name={item.name}
-            link={item.link}
-            like={item.likes.length}
-            onCardClick={props.onCardClick}
+            <CardContext.Provider value={item}>
+           <Card key={item._id} onCardClick={props.onCardClick}
           ></Card>
+          </CardContext.Provider>
           ))}
         </ul>
       </section>

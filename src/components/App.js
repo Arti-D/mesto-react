@@ -6,6 +6,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import CardContext from '../contexts/CardContext.js';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(
@@ -18,6 +19,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   const [currentUser, setUserInfo] = React.useState([]);
+  // const 
   React.useEffect(() => {
     api
       .getUserInfo()

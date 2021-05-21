@@ -27,6 +27,8 @@
 @import url(./blocks/elems/__wrapper/elems__wrapper.css);
 @import url(./blocks/elems/__list/elems__list.css);
 @import url(./blocks/elems/__remove-btn/elems__remove-btn.css);
+@import url(./blocks/elems/__remove-btn/elems__remove-btn_visible.css);
+@import url(./blocks/elems/__remove-btn/elems__remove-btn_hidden.css);
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);
 @import url(./blocks/popup/popup.css);
