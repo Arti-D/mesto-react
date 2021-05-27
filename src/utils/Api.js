@@ -39,6 +39,7 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
+  
   setUserInfo({ name, about }) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
@@ -71,6 +72,7 @@ class Api {
     }).then(this._checkResponse);
   }
 
+  // 
   newAvatar({ avatar }) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
@@ -83,10 +85,10 @@ class Api {
 }
 
 const config = {
-  url: "https://mesto.nomoreparties.co/v1/cohort-20",
+  url: "https://mesto.nomoreparties.co/v1/cohort-22",
   headers: {
-    // authorization: "ecd44a5f-5259-4858-9be5-8f874f37b67e",
-    authorization: "7d190d24-45cc-41a1-907b-c30a1fbc5d49",
+    authorization: "ecd44a5f-5259-4858-9be5-8f874f37b67e",
+    // authorization: "7d190d24-45cc-41a1-907b-c30a1fbc5d49",
     "Content-type": "application/json",
   },
 };

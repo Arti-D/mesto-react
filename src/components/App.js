@@ -4,22 +4,21 @@ import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
+import EditProfilePopup from "./EditProfilePopup.js";
 import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
-import CardContext from '../contexts/CardContext.js';
+import CardContext from "../contexts/CardContext.js";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(
-    false
-  );
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(
-    false
-  );
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   const [currentUser, setUserInfo] = React.useState([]);
-  // const 
+  // const
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -40,14 +39,25 @@ function App() {
   }
   function handleCardClick(data) {
     setSelectedCard(data);
-    // console.log(url);
   }
+
   function closeAllPopups() {
     setIsAddPlacePopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(null);
   }
+
+  function handleUpdateUser(name, about) {
+    api
+      .setUserInfo({ name: name, about: about })
+      .then((userData) => {
+        setUserInfo(userData);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -110,40 +120,11 @@ function App() {
             Сохранить
           </button>
         </PopupWithForm>
-        <PopupWithForm
-          name="edit"
-          title="Редактировать профиль"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            id="name-input"
-            name="name"
-            type="text"
-            placeholder="Имя"
-            className="popup__input popup__input_type_name"
-            minLength="2"
-            maxLength="40"
-            autoComplete="off"
-            required
-          />
-          <span id="name-input-error" className="error"></span>
-          <input
-            id="about-input"
-            name="about"
-            type="text"
-            placeholder="О себе"
-            className="popup__input popup__input_type_about"
-            minLength="2"
-            maxLength="200"
-            autoComplete="off"
-            required
-          />
-          <span id="about-input-error" className="error"></span>
-          <button className="popup__btn popup__save-btn" type="submit">
-            Сохранить
-          </button>
-        </PopupWithForm>
+          onUpdateUser={handleUpdateUser}
+        ></EditProfilePopup>
         <PopupWithForm title="Вы уверены?" name="sure">
           <button className="popup__btn popup-sure__btn" type="button">
             Да
