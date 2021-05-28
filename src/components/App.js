@@ -120,7 +120,6 @@ function App() {
         setCards([newCard, ...cards]);
       })
       .catch((err) => console.log(err));
-    console.log(data);
   }
 
   return (
