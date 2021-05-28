@@ -47,14 +47,13 @@ function Main(props) {
       <section className="elems">
         <ul className="elems__list">
           {props.cards.map((item) => (
-            <CardContext.Provider value={item}>
               <Card
+                card={item}
                 onCardLike={props.onCardLike}
                 key={item._id}
                 onCardClick={props.onCardClick}
                 onCardDelete={props.onCardDelete}
               ></Card>
-            </CardContext.Provider>
           ))}
         </ul>
       </section>

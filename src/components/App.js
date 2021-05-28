@@ -7,7 +7,7 @@ import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
-import api from '../utils/api.js';
+import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
-  const [currentUser, setUserInfo] = React.useState([]);
+  const [currentUser, setUserInfo] = React.useState({});
 
   React.useEffect(() => {
     api
@@ -92,17 +92,23 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     if (isLiked) {
-      api.delLike(card._id).then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      });
+      api
+        .delLike(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((err) => console.log(err));
     } else {
-      api.addLike(card._id).then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      });
+      api
+        .addLike(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((err) => console.log(err));
     }
   }
 
