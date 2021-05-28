@@ -14,7 +14,7 @@ function AddPlacePopup(props) {
     placeName.current.value = '';
     placeLink.current.value = '';
   }
-  
+
   return (
     <PopupWithForm
       name="add"
@@ -22,6 +22,7 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleAddPlaceSubmit}
+      buttonText='Сохранить'
     >
       <input
         id="img-title-input"
@@ -46,9 +47,6 @@ function AddPlacePopup(props) {
         ref={placeLink}
       />
       <span id="img-link-input-error" className="error"></span>
-      <button className="popup__btn popup-add__make-btn" type="submit">
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }
