@@ -82,9 +82,12 @@ function App() {
   }, []);
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then((res) => {
-      console.log(res);
-    });
+    api
+      .deleteCard(card._id)
+      .then((res) => {
+        setCards((state) => state.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleCardLike(card) {

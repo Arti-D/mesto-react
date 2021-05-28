@@ -1,8 +1,8 @@
 import React from "react";
 import api from "../utils/api.js";
 import Card from "./Card.js";
-import CurrentUserContext from '../contexts/CurrentUserContext.js';
-import CardContext from '../contexts/CardContext.js';
+import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import CardContext from "../contexts/CardContext.js";
 
 function Main(props) {
   const userData = React.useContext(CurrentUserContext);
@@ -12,7 +12,11 @@ function Main(props) {
       <section className="profile">
         <div className="profile__main">
           <div className="profile__avatar">
-            <img className="profile__avatar-img" src={userData.avatar} alt={`аватар пользователя ${userData.name}`} />
+            <img
+              className="profile__avatar-img"
+              src={userData.avatar}
+              alt={`аватар пользователя ${userData.name}`}
+            />
             <button
               className="profile__avatar-btn"
               type="button"
@@ -45,9 +49,13 @@ function Main(props) {
         <ul className="elems__list">
           {props.cards.map((item) => (
             <CardContext.Provider value={item}>
-           <Card onCardLike={props.onCardLike} key={item._id} onCardClick={props.onCardClick} onCardDelete={props.onCardDelete}
-          ></Card>
-          </CardContext.Provider>
+              <Card
+                onCardLike={props.onCardLike}
+                key={item._id}
+                onCardClick={props.onCardClick}
+                onCardDelete={props.onCardDelete}
+              ></Card>
+            </CardContext.Provider>
           ))}
         </ul>
       </section>
