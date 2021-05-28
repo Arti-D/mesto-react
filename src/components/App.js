@@ -9,7 +9,6 @@ import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
-import CardContext from "../contexts/CardContext.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
