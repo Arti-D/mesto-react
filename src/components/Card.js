@@ -1,4 +1,3 @@
-import CardContext from '../contexts/CardContext.js';
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import React from 'react';
 
